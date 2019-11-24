@@ -51,53 +51,84 @@
 					</div>
 				</div>
 			</header><!-- #header -->
-			
+	  
 			<!-- start banner Area -->
-			<section class="banner-area relative">
-				<div class="overlay overlay-bg"></div>				
+			<section class="relative about-banner">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Contact Us				
+							</h1>	
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="contact.html"> Contact Us</a></p>
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->				  
+
+			<!-- Start contact-page Area -->
+			<section class="contact-page-area section-gap">
 				<div class="container">
-					<div class="row fullscreen align-items-center justify-content-between">
-						<div class="col-lg-6 col-md-6 banner-left">
-							<h6 class="text-white">Away from monotonous life</h6>
-							<h1 class="text-white">Book My Room</h1>
-							<p class="text-white">
-								If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
-							</p>
-						</div>
-						<div class="col-lg-4 col-md-6 banner-right">
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							  <li class="nav-item">
-							    <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Hotels</a>
-							  </li>
-							</ul>
-							<div class="tab-content" id="myTabContent">
-						
-							  <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="to" placeholder="City " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<input type="number" min="1" max="5" class="form-control" name="hotelstandard" placeholder="Hotel rating " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel rating '">
-									<select class="form-control" name="roomstandard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room standard '">
-										<option value="" disabled selected>Room standard</option>
-										<option>Standard</option>
-										<option>VIP</option>
-									</select>
-									<input type="number" step="10" class="form-control" name="maxprice" placeholder="Max price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Max price per night '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Guests " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guests '">
-									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>									
-								</form>							  	
-							  </div>
-						
+					<div class="row">
+						<div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
+						<div class="col-lg-4 d-flex flex-column address-wrap">
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-home"></span>
+								</div>
+								<div class="contact-details">
+									<h5>87-100 Toruń</h5>
+									<p>
+										ul. Władysława Łokietka 5
+									</p>
+								</div>
 							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-phone-handset"></span>
+								</div>
+								<div class="contact-details">
+									<h5>+48 (56) 654 66 66</h5>
+									<p>Mon to Fri 9am to 6pm</p>
+								</div>
+							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-envelope"></span>
+								</div>
+								<div class="contact-details">
+									<h5>support@bookmyroom.pl</h5>
+									<p>Send us your query anytime!</p>
+								</div>
+							</div>														
+						</div>
+						<div class="col-lg-8">
+							<form class="form-area contact-form text-right" id="myForm" action="mail.php" method="post">
+								<div class="row">	
+									<div class="col-lg-6 form-group">
+										<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+									
+										<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
+
+										<input name="subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" required="" type="text">
+									</div>
+									<div class="col-lg-6 form-group">
+										<textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>				
+									</div>
+									<div class="col-lg-12">
+										<div class="alert-msg" style="text-align: left;"></div>
+										<button class="genric-btn primary" style="float: right;">Send Message</button>											
+									</div>
+								</div>
+							</form>	
 						</div>
 					</div>
-				</div>					
+				</div>	
 			</section>
-			<!-- End banner Area -->
+			<!-- End contact-page Area -->
 
-
-		
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
@@ -156,7 +187,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					</div>
 				</div>
 			</footer>
-			<!-- End footer Area -->	
+			<!-- End footer Area -->		
 
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="js/popper.min.js"></script>

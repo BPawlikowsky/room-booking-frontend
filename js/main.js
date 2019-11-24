@@ -261,7 +261,7 @@ $(document).ready(function() {
         function init() {
             var mapOptions = {
                 zoom: 11,
-                center: new google.maps.LatLng(40.6700, -73.9400), // New York
+                center: new google.maps.LatLng(53.0263528, 18.6281461), // Toruń
                 styles: [{
                     "featureType": "water",
                     "elementType": "geometry",
