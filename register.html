@@ -1,0 +1,337 @@
+	<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>Travel</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="css/linearicons.css">
+			<link rel="stylesheet" href="css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<link rel="stylesheet" href="css/magnific-popup.css">
+			<link rel="stylesheet" href="css/jquery-ui.css">				
+			<link rel="stylesheet" href="css/nice-select.css">							
+			<link rel="stylesheet" href="css/animate.min.css">
+			<link rel="stylesheet" href="css/owl.carousel.css">				
+			<link rel="stylesheet" href="css/main.css">
+
+			<script>
+					function showIndDiv() {
+						   document.getElementById('indRegister').style.display = "block";
+						   document.getElementById('busRegister').style.display = "none";
+						   $('html,body').animate(
+							{ scrollTop: $('#indRegister').offset().top	},
+							'slow');					
+					};
+					function showBusDiv() {
+						   document.getElementById('indRegister').style.display = "none";
+						   document.getElementById('busRegister').style.display = "block";
+						   $('html,body').animate(
+							{ scrollTop: $('#busRegister').offset().top	},
+							'slow');
+					};
+			</script>
+		
+		</head>
+		<body>	
+				<header id="header">
+						<div class="header-top">
+						</div>
+						<div class="container main-menu">
+							<div class="row align-items-center justify-content-between d-flex">
+							  <div id="logo">
+								<a href="index.html"><img src="img/logo2.png" alt="" title="" /></a>
+							  </div>
+							  <nav id="nav-menu-container">
+								<ul class="nav-menu">
+								  <li><a href="index.html">Home</a></li>
+								  <li><a href="register.html">Register</a></li>
+								  <li><a href="insurance.html">Login</a></li>
+								  <li><a href="contact.html">Contact</a></li>
+		
+								</ul>
+							  </nav><!-- #nav-menu-container -->					      		  
+							</div>
+						</div>
+					</header><!-- #header -->
+			
+			  
+			<!-- start banner Area -->
+			<section class="about-banner relative">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Register			
+							</h1>	
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="register.html"> Register</a></p>
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
+			<!-- Start about-info Area -->
+			<section class="destinations-area section-gap">
+					<div class="container">
+						<div class="row d-flex justify-content-center">
+							<div class="menu-content pb-40 col-lg-8">
+								<div class="title text-center">
+									<h1 class="mb-10">Register account</h1>
+								</div>
+							</div>
+						</div>	
+						<div href="#indRegister" class="row">
+								<div class="col-lg-6 col-md-6" value="ind" onclick="showIndDiv()">
+									<div class="single-destinations">
+										<div class="thumb">
+											<img src="img/register/ind.jpg" alt="">
+										</div>
+										<div class="details">
+											<h4 class="d-flex justify-content-between">
+												<span>Register as a traveller</span>                              	
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6" value="bus" onclick="showBusDiv()">
+									<div class="single-destinations">
+										<div class="thumb">
+											<img src="img/register/bus.jpg" alt="">
+										</div>
+										<div class="details">
+											<h4 class="d-flex justify-content-between">
+												<span>Register as a corporate user</span>                              	
+											</h4>
+										</div>
+									</div>
+								</div>
+
+								<script>
+
+									function postIndDataToApi() {
+										var jsonData = {
+											password: $("#indPass").val(),
+											passwordValidCheck: $("#indRepPass").val(),
+											email: $("#indEmail").val()
+										}
+			
+										$.ajax({
+											type: "POST",
+											url: "http://localhost:8080/user/register",
+											data: JSON.stringify(jsonData),
+											headers: {
+												"Content-Type": "application/json",
+												"Accepct": "application/json"
+											},
+											success:  function(){ 
+												document.getElementById('success').style.display = "block", 
+												document.getElementById('error').style.display = "none" ,
+												$('#indEmail').val(''),
+												$('#indPass').val(''),
+												$('#indRepPass').val('')
+
+												},
+											error: function() {
+												document.getElementById('error').style.display = "block",
+												document.getElementById('success').style.display = "none",
+												$('#indEmail').val(''),
+												$('#indPass').val(''),
+												$('#indRepPass').val('')
+											}
+										})
+									}
+			
+								</script>
+
+						
+					
+					<div id="indRegister" class="col-lg-8 col-md-12" style="display:none">
+							<form id="indForm" action="#">
+								<br>
+								<h4>Individual customer register form</h4>
+								<div class="input-group-icon mt-10">
+									<div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+									<input type="email" id="indEmail" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+								</div>
+								<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
+										<input type="password" id="indPass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+								</div>
+								<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
+										<input type="password" id="indRepPass" placeholder="Repeat password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat password'" required class="single-input">
+								</div>
+								<div>
+									<input type="button" class="primary-btn2 text-uppercase" value="Submit" onclick="postIndDataToApi()" />
+								</div>
+							</form>
+					</div>	
+
+					<script>
+						function postBusDataToApi() {
+							var jsonData = {
+								name: $("#busName").val(),
+								password: $("#busPass").val(),
+								repeatedPassword: $("#busRepPass").val(),
+								email: $("#busEmail").val()
+							}
+
+							$.ajax({
+								type: "POST",
+								url: "http://localhost:8080/corporations",
+								data: JSON.stringify(jsonData),
+								headers: {
+									"Content-Type": "application/json",
+									"Accepct": "application/json"
+								},
+								success: function(){ 
+									document.getElementById('success').style.display = "block", 
+									document.getElementById('error').style.display = "none" ,
+									$('#busName').val(''),
+									$('#busEmail').val(''),
+									$('#busPass').val(''),
+									$('#busRepPass').val('')
+									},
+								error: function() {
+									document.getElementById('error').style.display = "block",
+									document.getElementById('success').style.display = "none",
+									$('#busName').val(''),
+									$('#busEmail').val(''),
+									$('#busPass').val(''),
+									$('#busRepPass').val('')
+									}  
+							})
+						}
+					</script>
+
+					<div id="busRegister" class="col-lg-8 col-md-12" style="display:none">
+							<form id="busForm" action="#">
+								<br>
+								<h4>Corporate customer register form</h4>
+								<div class="input-group mt-10">
+										<input type="text" id="busName" placeholder="Company name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company name'" required class="single-input">
+									</div>
+								<div class="input-group-icon mt-10">
+									<div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+									<input type="email" id="busEmail" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+								</div>
+								<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
+										<input type="password" id="busPass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+								</div>
+								<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
+										<input type="password" id="busRepPass" placeholder="Repeat password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat password'" required class="single-input">
+								</div>
+								<div>
+									<input type="button" class="primary-btn2 text-uppercase" value="Submit" onclick="postBusDataToApi()" />
+								</div>
+							</form>
+					</div>
+					<div id="success" class="col-lg-12" style="display:none">
+									<blockquote class="generic-blockquote">
+										Registration complete. Please login by your email and password.
+									</blockquote>
+					</div>
+
+					<div id="error" class="col-lg-8 col-md-12" style="display:none">
+							<blockquote class="generic-blockquote">
+									Something went wrong. Try again.
+								</blockquote>
+					</div>
+			</section>
+			<!-- End about-info Area -->
+		
+			<!-- start footer Area -->		
+			<footer class="footer-area section-gap">
+					<div class="container">
+	
+						<div class="row">
+							<div class="col-lg-3  col-md-6 col-sm-6">
+								<div class="single-footer-widget">
+									<h6>About Agency</h6>
+									<p>
+										The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point 
+									</p>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<div class="single-footer-widget">
+									<h6>Navigation Links</h6>
+									<div class="row">
+										<div class="col">
+											<ul>
+												<li><a href="#">Home</a></li>
+												<li><a href="#">Services</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<ul>
+												<li><a href="#">Team</a></li>
+												<li><a href="#">Contact</a></li>
+											</ul>
+										</div>										
+									</div>							
+								</div>
+							</div>							
+							<div class="col-lg-3  col-md-6 col-sm-6">
+								<div class="single-footer-widget">
+									<h6>Newsletter</h6>
+									<p>
+										For business professionals caught between high OEM price and mediocre print and graphic output.									
+									</p>								
+									<div id="mc_embed_signup">
+										<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
+											<div class="input-group d-flex flex-row">
+												<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+												<button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
+											</div>									
+											<div class="mt-10 info"></div>
+										</form>
+									</div>
+								</div>
+							</div>
+										
+						</div>
+	
+						<div class="row footer-bottom d-flex justify-content-between align-items-center">
+							<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						</div>
+					</div>
+				</footer>
+				<!-- End footer Area -->
+
+			<script src="js/vendor/jquery-2.2.4.min.js"></script>
+			<script src="js/popper.min.js"></script>
+			<script src="js/vendor/bootstrap.min.js"></script>			
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
+ 			<script src="js/jquery-ui.js"></script>					
+  			<script src="js/easing.min.js"></script>			
+			<script src="js/hoverIntent.js"></script>
+			<script src="js/superfish.min.js"></script>	
+			<script src="js/jquery.ajaxchimp.min.js"></script>
+			<script src="js/jquery.magnific-popup.min.js"></script>						
+			<script src="js/jquery.nice-select.min.js"></script>					
+			<script src="js/owl.carousel.min.js"></script>							
+			<script src="js/mail-script.js"></script>	
+			<script src="js/main.js"></script>	
+		</body>
+	</html>
