@@ -63,6 +63,7 @@
 								  <li><a href="register.html">Register</a></li>
 								  <li><a href="login.html">Login</a></li>
 								  <li><a href="user-profile.html">User Profile</a></li>
+								  <li><a href="corporate-user.html">Corporate Profile</a></li>
 								  <li><a href="contact.html">Contact</a></li>
 		
 								</ul>
@@ -196,7 +197,7 @@
 
 							$.ajax({
 								type: "POST",
-								url: "http://localhost:8080/corporations",
+								url: "http://localhost:8080/corporations/register",
 								data: JSON.stringify(jsonData),
 								headers: {
 									"Content-Type": "application/json",
@@ -247,15 +248,15 @@
 							</form>
 					</div>
 					<div id="success" class="col-lg-12" style="display:none">
-									<blockquote class="generic-blockquote">
-										Registration complete. Please login by your email and password.
-									</blockquote>
+							<blockquote class="generic-blockquote">
+									Registration complete. Please login by your email and password.
+								</blockquote>
 					</div>
 
 					<div id="error" class="col-lg-8 col-md-12" style="display:none">
 							<blockquote class="generic-blockquote">
 									Something went wrong. Try again.
-								</blockquote>
+							</blockquote>
 					</div>
 			</section>
 			<!-- End about-info Area -->

@@ -61,22 +61,66 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								User profile				
+								Corporate profile				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="user-profile.html">User profile</a></p>
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="corporate-user.html">Corporate profile</a></p>
 						</div>	
 					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->				  
 
-			<!-- Start user-profile-page Area -->
+			<!-- Start corporate-page Area -->
 			<script>
-				$(document).ready(function() {
-					$.get("http://localhost:8080/reservation", function (data) {
-					console.log(data)
-					});
-				})
+				function postHotelDataToApi() {
+							var jsonData = {
+								city: $("#city").val(),
+								street: $("#street").val(),
+								streetNumber: $("#streetNumber").val(),
+								phoneNumber: $("#phoneNumber").val(),
+								standard: $("#standard").val(),
+								corporationId: $("#corporationId").val(),
+								roomsToHotelRequests: [ {
+									price: $("#priceStandard").val(),
+									numOfBeds: $("#numOfBedsStandard").val(),
+									numOfRooms: $("#numOfRoomsStandard").val(),
+									standard: "STANDARD"
+								},
+								{
+									price: $("#priceVIP").val(),
+									numOfBeds: $("#numOfBedsVIP").val(),
+									numOfRooms: $("#numOfRoomsVIP").val(),
+									standard: "VIP"
+								}
+								]								
+							}
+
+							$.ajax({
+								type: "POST",
+								url: "http://localhost:8080/hotels",
+								data: JSON.stringify(jsonData),
+								headers: {
+									"Content-Type": "application/json",
+									"Accepct": "application/json"
+								},
+								success: function(){ 
+									document.getElementById('success').style.display = "block", 
+									document.getElementById('error').style.display = "none" ,
+									$('#busName').val(''),
+									$('#busEmail').val(''),
+									$('#busPass').val(''),
+									$('#busRepPass').val('')
+									},
+								error: function() {
+									document.getElementById('error').style.display = "block",
+									document.getElementById('success').style.display = "none",
+									$('#busName').val(''),
+									$('#busEmail').val(''),
+									$('#busPass').val(''),
+									$('#busRepPass').val('')
+									}  
+							})
+						}
 			</script>
 
 			<section class="contact-page-area section-gap">
@@ -84,9 +128,76 @@
 			<div class="container">
 				<div>
 					<h1>Welcome XXXX!</h1>
-				</div>			
+				</div>		
+				
+				<div id="addHotel" class="col-lg-8 col-md-12">
+						<form id="addHotelForm" action="#">
+							<br><br>
+							<h4>Create new hotel</h4>
+							<div class="input-group-icon mt-10">
+								<input type="text" id="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="text" id="street" placeholder="Street" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Street'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="text" id="streetNumber" placeholder="Street number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Street number'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="text" id="phoneNumber" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="number" min="1" max="5" id="standard" placeholder="Hotel standard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel standard'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="number" id="corporationId" placeholder="Your corporation id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your corporation id'" required class="single-input">
+							</div>
+
+							<div>
+								<br><h5>Add Standard Rooms</h5>
+							</div>
+						
+							<div class="input-group-icon mt-10">
+									<input type="number" id="priceStandard" placeholder="Price" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="text" id="numOfBedsStandard" placeholder="Number of beds" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number of beds'" required class="single-input">
+							</div>	
+							<div class="input-group-icon mt-10">
+									<input type="text" id="numOfRoomsStandard" placeholder="Number of rooms" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number of rooms'" required class="single-input">
+							</div>
+							<div>
+								<br><h5>Add VIP Rooms</h5>
+							</div>
+							
+							<div class="input-group-icon mt-10">
+									<input type="number" id="priceVIP" placeholder="Price" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'" required class="single-input">
+							</div>
+							<div class="input-group-icon mt-10">
+									<input type="text" id="numOfBedsVIP" placeholder="Number of beds" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number of beds'" required class="single-input">
+							</div>	
+							<div class="input-group-icon mt-10">	
+									<input type="text" id="numOfRoomsVIP" placeholder="Number of rooms" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number of rooms'" required class="single-input">
+							</div>
+						
+							<div>
+								<input type="button" class="primary-btn2 text-uppercase" value="Add Hotel" onclick="postHotelDataToApi()" />
+							</div>
+						</form>
+				</div>	
+				<div id="success" class="col-lg-12" style="display:none">
+						<blockquote class="generic-blockquote">
+								Hotel created.
+							</blockquote>
+				</div>
+				<div id="error" class="col-lg-8 col-md-12" style="display:none">
+						<blockquote class="generic-blockquote">
+								Something went wrong. Try again.
+						</blockquote>
+				</div>
+
 			<div class="section-top-border">
-			<h3 class="mb-30">My reservations</h3>
+			<h3 class="mb-30">Reservations in my hotels</h3>
 						<div class="progress-table-wrap">
 							<div class="progress-table">
 								<div class="table-head">
@@ -123,7 +234,7 @@
 					</div>
 					</section>
 
-			<!-- End user-profile-page Area -->
+			<!-- End corporate-page Area -->
 
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
