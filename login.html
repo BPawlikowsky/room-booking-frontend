@@ -32,17 +32,17 @@
 
 			<script>
 					function showIndDiv() {
-						   document.getElementById('indRegister').style.display = "block";
-						   document.getElementById('busRegister').style.display = "none";
+						   document.getElementById('indLogin').style.display = "block";
+						   document.getElementById('busLogin').style.display = "none";
 						   $('html,body').animate(
-							{ scrollTop: $('#indRegister').offset().top	},
+							{ scrollTop: $('#indLogin').offset().top	},
 							'slow');					
 					};
 					function showBusDiv() {
-						   document.getElementById('indRegister').style.display = "none";
-						   document.getElementById('busRegister').style.display = "block";
+						   document.getElementById('indLogin').style.display = "none";
+						   document.getElementById('busLogin').style.display = "block";
 						   $('html,body').animate(
-							{ scrollTop: $('#busRegister').offset().top	},
+							{ scrollTop: $('#busLogin').offset().top	},
 							'slow');
 					};
 			</script>
@@ -78,9 +78,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Register			
+								Login			
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="register.html"> Register</a></p>
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="login.html"> Login</a></p>
 						</div>	
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 						<div class="row d-flex justify-content-center">
 							<div class="menu-content pb-40 col-lg-8">
 								<div class="title text-center">
-									<h1 class="mb-10">Register account</h1>
+									<h1 class="mb-10">Login - choose account type</h1>
 								</div>
 							</div>
 						</div>	
@@ -105,7 +105,7 @@
 										</div>
 										<div class="details">
 											<h4 class="d-flex justify-content-between">
-												<span>Register as a traveller</span>                              	
+												<span>Login as a traveller</span>                              	
 											</h4>
 										</div>
 									</div>
@@ -117,7 +117,7 @@
 										</div>
 										<div class="details">
 											<h4 class="d-flex justify-content-between">
-												<span>Register as a corporate user</span>                              	
+												<span>Login as a corporate user</span>                              	
 											</h4>
 										</div>
 									</div>
@@ -128,13 +128,12 @@
 									function postIndDataToApi() {
 										var jsonData = {
 											password: $("#indPass").val(),
-											passwordValidCheck: $("#indRepPass").val(),
 											email: $("#indEmail").val()
 										}
 			
 										$.ajax({
 											type: "POST",
-											url: "http://localhost:8080/user/register",
+											url: "http://localhost:8080/user/login",
 											data: JSON.stringify(jsonData),
 											headers: {
 												"Content-Type": "application/json",
@@ -144,16 +143,13 @@
 												document.getElementById('success').style.display = "block", 
 												document.getElementById('error').style.display = "none" ,
 												$('#indEmail').val(''),
-												$('#indPass').val(''),
-												$('#indRepPass').val('')
-
+												$('#indPass').val('')
 												},
 											error: function() {
 												document.getElementById('error').style.display = "block",
 												document.getElementById('success').style.display = "none",
 												$('#indEmail').val(''),
-												$('#indPass').val(''),
-												$('#indRepPass').val('')
+												$('#indPass').val('')
 											}
 										})
 									}
@@ -162,10 +158,10 @@
 
 						
 					
-					<div id="indRegister" class="col-lg-8 col-md-12" style="display:none">
+					<div id="indLogin" class="col-lg-8 col-md-12" style="display:none">
 							<form id="indForm" action="#">
-								<br>
-								<h4>Individual customer register form</h4>
+								<br><br>
+								<h4>Individual customer login form</h4>
 								<div class="input-group-icon mt-10">
 									<div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
 									<input type="email" id="indEmail" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
@@ -173,10 +169,6 @@
 								<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
 										<input type="password" id="indPass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
-								</div>
-								<div class="input-group-icon mt-10">
-										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
-										<input type="password" id="indRepPass" placeholder="Repeat password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat password'" required class="single-input">
 								</div>
 								<div>
 									<input type="button" class="primary-btn2 text-uppercase" value="Submit" onclick="postIndDataToApi()" />
@@ -187,15 +179,13 @@
 					<script>
 						function postBusDataToApi() {
 							var jsonData = {
-								name: $("#busName").val(),
 								password: $("#busPass").val(),
-								repeatedPassword: $("#busRepPass").val(),
 								email: $("#busEmail").val()
 							}
 
 							$.ajax({
 								type: "POST",
-								url: "http://localhost:8080/corporations",
+								url: "http://localhost:8080/corporations/login",
 								data: JSON.stringify(jsonData),
 								headers: {
 									"Content-Type": "application/json",
@@ -204,30 +194,23 @@
 								success: function(){ 
 									document.getElementById('success').style.display = "block", 
 									document.getElementById('error').style.display = "none" ,
-									$('#busName').val(''),
 									$('#busEmail').val(''),
-									$('#busPass').val(''),
-									$('#busRepPass').val('')
+									$('#busPass').val('')
 									},
 								error: function() {
 									document.getElementById('error').style.display = "block",
 									document.getElementById('success').style.display = "none",
-									$('#busName').val(''),
 									$('#busEmail').val(''),
-									$('#busPass').val(''),
-									$('#busRepPass').val('')
+									$('#busPass').val('')
 									}  
 							})
 						}
 					</script>
 
-					<div id="busRegister" class="col-lg-8 col-md-12" style="display:none">
+					<div id="busLogin" class="col-lg-8 col-md-12" style="display:none">
 							<form id="busForm" action="#">
-								<br><br><br><br>
-								<h4>Corporate customer register form</h4>
-								<div class="input-group mt-10">
-										<input type="text" id="busName" placeholder="Company name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company name'" required class="single-input">
-									</div>
+								<br><br>
+								<h4>Corporate customer login form</h4>
 								<div class="input-group-icon mt-10">
 									<div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
 									<input type="email" id="busEmail" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
@@ -236,10 +219,6 @@
 										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
 										<input type="password" id="busPass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
 								</div>
-								<div class="input-group-icon mt-10">
-										<div class="icon"><i class="fa fa-unlock" aria-hidden="true"></i></div>
-										<input type="password" id="busRepPass" placeholder="Repeat password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat password'" required class="single-input">
-								</div>
 								<div>
 									<input type="button" class="primary-btn2 text-uppercase" value="Submit" onclick="postBusDataToApi()" />
 								</div>
@@ -247,7 +226,7 @@
 					</div>
 					<div id="success" class="col-lg-12" style="display:none">
 									<blockquote class="generic-blockquote">
-										Registration complete. Please login by your email and password.
+										Logged in
 									</blockquote>
 					</div>
 
