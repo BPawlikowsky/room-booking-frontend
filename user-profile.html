@@ -53,53 +53,78 @@
 					</div>
 				</div>
 			</header><!-- #header -->
-			
+	  
 			<!-- start banner Area -->
-			<section class="banner-area relative">
-				<div class="overlay overlay-bg"></div>				
-				<div class="container">
-					<div class="row fullscreen align-items-center justify-content-between">
-						<div class="col-lg-6 col-md-6 banner-left">
-							<h6 class="text-white">Away from monotonous life</h6>
-							<h1 class="text-white">Book My Room</h1>
-							<p class="text-white">
-								If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
-							</p>
-						</div>
-						<div class="col-lg-4 col-md-6 banner-right">
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							  <li class="nav-item">
-							    <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Hotels</a>
-							  </li>
-							</ul>
-							<div class="tab-content" id="myTabContent">
-						
-							  <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="to" placeholder="City " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<input type="number" min="1" max="5" class="form-control" name="hotelstandard" placeholder="Hotel rating " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel rating '">
-									<select class="form-control" name="roomstandard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room standard '">
-										<option value="" disabled selected>Room standard</option>
-										<option>Standard</option>
-										<option>VIP</option>
-									</select>
-									<input type="number" step="10" class="form-control" name="maxprice" placeholder="Max price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Max price per night '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Guests " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guests '">
-									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>									
-								</form>							  	
-							  </div>
-						
+			<section class="relative about-banner">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								User profile				
+							</h1>	
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="user-profile.html">User profile</a></p>
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->				  
+
+			<!-- Start user-profile-page Area -->
+			<script>
+				$(document).ready(function() {
+					$.get("http://localhost:8080/reservation", function (data) {
+					console.log(data)
+					});
+				})
+			</script>
+
+			<section class="contact-page-area section-gap">
+			<div class="whole-wrap">
+			<div class="container">
+				<div>
+					<h1>Welcome XXXX!</h1>
+				</div>			
+			<div class="section-top-border">
+			<h3 class="mb-30">My reservations</h3>
+						<div class="progress-table-wrap">
+							<div class="progress-table">
+								<div class="table-head">
+									<div class="serial">#</div>
+									<div class="visit">Hotel</div>
+									<div class="visit">RoomType</div>
+									<div class="visit">Start D</div>
+									<div class="visit">End Date</div>
+									<div class="visit">Full price</div>	
+									<div class="visit">Cancel</div>											
+								</div>
+								<div class="table-row">
+									<div class="serial" id="id">01</div>
+									<div class="visit" id="hotel">IBIS</div>
+									<div class="visit" id="roomType">VIP</div>
+									<div class="visit" id="startDate">20-20-2000</div>	
+									<div class="visit" id="endDate">27-20-2000</div>							
+									<div class="visit" id="fullPrice">2000</div>	
+									<div class="visit" id="cancel">X</div>							
+								</div>
+								<div class="table-row">
+									<div class="serial" id="id">01</div>
+									<div class="visit" id="hotel">IBIS</div>
+									<div class="visit" id="roomType">VIP</div>
+									<div class="visit" id="startDate">20-20-2000</div>	
+									<div class="visit" id="endDate">27-20-2000</div>							
+									<div class="visit" id="fullPrice">2000</div>	
+									<div class="visit" id="cancel">X</div>								
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>					
-			</section>
-			<!-- End banner Area -->
+					</div>
+					</div>
+					</section>
 
+			<!-- End user-profile-page Area -->
 
-		
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
@@ -158,7 +183,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					</div>
 				</div>
 			</footer>
-			<!-- End footer Area -->	
+			<!-- End footer Area -->		
 
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="js/popper.min.js"></script>
