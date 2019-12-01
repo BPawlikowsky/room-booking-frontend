@@ -55,6 +55,127 @@
 			</header><!-- #header -->
 			
 			<!-- start banner Area -->
+
+			<script>
+
+
+				function postSearchDataToApi() {
+
+							var startDate = document.getElementById("start").value;
+							var yearStart = startDate[6]+startDate[7]+startDate[8]+startDate[9]
+							var monthStart = startDate[0]+startDate[1]
+							var dayStart = startDate[3]+startDate[4]
+
+							var endDate = document.getElementById("return").value;
+							var yearEnd = endDate[6]+endDate[7]+endDate[8]+endDate[9]
+							var monthEnd = endDate[0]+endDate[1]
+							var dayEnd = endDate[3]+endDate[4]
+
+							var jsonData = {
+								city: $("#to").val(),
+								hotelStandard: $("#hotelstandard").val(),
+								priceMin: $("#minprice").val(),
+								priceMax: $("#maxprice").val(),
+								numberOfBeds: $("#adults").val(),
+								roomStandard: $("#roomstandard").val(),
+								start: yearStart+"-"+monthStart+"-"+dayStart,
+								end: yearEnd+"-"+monthEnd+"-"+dayEnd
+							}
+
+							function showStandardAsStars() {
+								for(var j = 0; j < jsonData.hotelStandard; j++) {
+									var spanStar = 
+										"<span class='fa fa-star checked'></span>"
+								}
+							}
+
+							
+						
+						var respUrl;
+
+							$.ajax({
+								type: "GET",
+								url: "http://localhost:8080/hotels/query",								
+								data: jsonData,
+								headers: {
+									"Content-Type": "application/json",
+									"Accepct": "application/json"
+								},
+								success: function(){ 
+									respUrl = this.url;
+									$.getJSON(respUrl, function (response) {
+
+										
+							for(var i=0;i < response.length;i++)
+							{
+																
+								var div  =
+									"<div class='col-lg-4'>" +
+										"<div class='single-destinations'>" +
+										"<div class='details'>" +
+										"<h4 class='d-flex justify-content-between'>"+
+											"<span>" + 'nazwa' +' ' + 'miasto' +"</span>" +
+											"<div class='star'>" +
+												//showStandardAsStars();
+											+
+											"</div></h4>" +
+											"<ul class='package-list'>" +
+											"<li class='d-flex justify-content-between align-items-center'>" +
+												"<span>" + 'Street' + "</span>" +
+												"<span>" + 'XXX' + "</span>" +
+											"</li>" +
+											"<li class='d-flex justify-content-between align-items-center'>" +
+												"<span>" + 'Street' + "</span>" +
+												"<span>" + 'XXX' + "</span>" +
+											"</li>" +
+											"<li class='d-flex justify-content-between align-items-center'>" +
+												"<span>" + 'Street' + "</span>" +
+												"<span>" + 'XXX' + "</span>" +
+											"</li>" +										
+											"<li class='d-flex justify-content-between align-items-center'>" +
+												"<span>" + 'Street' + "</span>" +
+												"<span>" + 'XXX' + "</span>" +
+											"</li>" +
+											"<li class='d-flex justify-content-between align-items-center'>" +
+												"<span>" + 'Street' + "</span>" +
+												"<span>" + 'XXX' + "</span>" +
+											"</li>" +													
+										"</ul>" +
+								"</div>" +
+							"</div>"				
+							$("#query").append(div);
+						}
+
+									});
+									console.log("Ok")
+									document.getElementById('search').style.display = "block", 
+									$("#to").val(""),
+									$("#hotelstandard").val(""),
+									$("#minprice").val(""),
+									$("#adults").val(""),
+									$("#maxprice").val(""),
+									$("#roomstandard").val(""),
+									$("#start").val(""),
+									$("#return").val("")
+
+									},
+								error: function() {
+									console.log("Lipa")
+									$("#to").val(""),
+									$("#hotelstandard").val(""),
+									$("#minprice").val(""),
+									$("#adults").val(""),
+									$("#maxprice").val(""),
+									$("#roomstandard").val(""),
+									$("#start").val(""),
+									$("#return").val("")
+									}  
+							})
+
+
+				};
+			</script>
+
 			<section class="banner-area relative">
 				<div class="overlay overlay-bg"></div>				
 				<div class="container">
@@ -73,21 +194,21 @@
 							  </li>
 							</ul>
 							<div class="tab-content" id="myTabContent">
-						
 							  <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
 								<form class="form-wrap">
-									<input type="text" class="form-control" name="to" placeholder="City " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<input type="number" min="1" max="5" class="form-control" name="hotelstandard" placeholder="Hotel rating " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel rating '">
-									<select class="form-control" name="roomstandard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room standard '">
+									<input type="text" class="form-control" id="to" placeholder="City " onfocus="this.placeholder = ''" onblur="this.placeholder = 'City '">
+									<input type="text" class="form-control date-picker" id="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
+									<input type="text" class="form-control date-picker" id="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<input type="number" min="1" max="5" class="form-control" id="hotelstandard" placeholder="Hotel rating " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel rating '">
+									<select class="form-control" id="roomstandard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room standard '">
 										<option value="" disabled selected>Room standard</option>
-										<option>Standard</option>
-										<option>VIP</option>
+										<option value="STANDARD">Standard</option>
+										<option value="VIP">VIP</option>
 									</select>
-									<input type="number" step="10" class="form-control" name="maxprice" placeholder="Max price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Max price per night '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Guests " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guests '">
-									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>									
+									<input type="number" step="10" class="form-control" id="minprice" placeholder="Min price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Min price per night '">
+									<input type="number" step="10" class="form-control" id="maxprice" placeholder="Max price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Max price per night '">
+									<input type="number" min="1" max="20" class="form-control" id="adults" placeholder="Guests " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guests '">
+									<input type="button" class="primary-btn text-uppercase" value="Search hotels" onclick="postSearchDataToApi()"/>									
 								</form>							  	
 							  </div>
 						
@@ -98,7 +219,25 @@
 			</section>
 			<!-- End banner Area -->
 
+			<!-- Start destinations Area -->
 
+				</script>
+			<section class="destinations-area section-gap">
+				<div id="search" style="display: none" class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-40 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Hotels for you</h1>
+		                        <p>Where would you like to stay?</p>
+		                    </div>
+		                </div>
+		            </div>						
+					<div class="row">
+						<div id="query" />																								
+					</div>
+				</div>	
+			</section>
+			<!-- End destinations Area -->
 		
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
