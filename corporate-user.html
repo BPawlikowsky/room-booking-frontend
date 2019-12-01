@@ -188,6 +188,64 @@
 						</blockquote>
 				</div>
 
+			<script>
+				function deleteDataFromApi(i) {
+							$.ajax({
+								type: "DELETE",
+								url: "http://localhost:8080/reservation/?reservationId="+i,
+								headers: {
+									"Content-Type": "application/json",
+									"Accepct": "application/json"
+								},
+								success:  function(){ 
+									window.location.reload(false);
+								},
+								error: function() {
+									window.alert("Can't delete this reservation.")
+								}
+							})
+							}
+
+					var url  = "http://localhost:8080/reservation?corporationId=1";
+					
+					$.getJSON(url, function( data ) {
+			
+						for(var i=0;i < data.length;i++)
+						{
+
+							var roomType;
+							var roomTypeId;
+							if(roomTypeId%2==0) {
+								roomType = "VIP"
+							} else {
+								roomType = "STANDARD"
+							};
+							
+							var id = data[i]["id"]
+
+							var yearStart = data[i]["reservationStart"]["0"] + data[i]["reservationStart"]["1"] + data[i]["reservationStart"]["2"] + data[i]["reservationStart"]["3"]
+							var monthStart = data[i]["reservationStart"]["5"] + data[i]["reservationStart"]["6"]
+							var dayStart = data[i]["reservationStart"]["8"] + data[i]["reservationStart"]["9"]				
+							
+							var yearEnd = data[i]["reservationEnd"]["0"] + data[i]["reservationEnd"]["1"] + data[i]["reservationEnd"]["2"] + data[i]["reservationEnd"]["3"]
+							var monthEnd = data[i]["reservationEnd"]["5"] + data[i]["reservationEnd"]["6"]
+							var dayEnd = data[i]["reservationEnd"]["8"] + data[i]["reservationEnd"]["9"]	
+
+							var tr  ="<div class='table-row'>"+
+									"<div class='serial'>"+id+"</div>"+
+									"<div class='visit'>"+data[i]["hotelsId"]+"</div>"+
+									"<div class='visit'>"+roomType+"</div>"+
+									"<div class='visit'>"+yearStart+"-"+monthStart+"-"+dayStart+"</div>"+
+									"<div class='visit'>"+yearEnd+"-"+monthEnd+"-"+dayEnd+"</div>"+
+									"<div class='visit'>"+roomType+"</div>"+
+									"<div class='visit'>"+roomType+"</div>"+
+									"<div class='visit'><input type='button' value='Delete' onclick='deleteDataFromApi(" + id + ")' class='genric-btn danger' /></div></div>";
+						$("#reservations").append(tr);
+						}
+					});
+
+			</script>
+
 			<div class="section-top-border">
 			<h3 class="mb-30">Reservations in my hotels</h3>
 						<div class="progress-table-wrap">
@@ -196,29 +254,13 @@
 									<div class="serial">#</div>
 									<div class="visit">Hotel</div>
 									<div class="visit">RoomType</div>
-									<div class="visit">Start D</div>
+									<div class="visit">Start Data</div>
 									<div class="visit">End Date</div>
+									<div class="visit">Price per night</div>	
 									<div class="visit">Full price</div>	
 									<div class="visit">Cancel</div>											
 								</div>
-								<div class="table-row">
-									<div class="serial" id="id">01</div>
-									<div class="visit" id="hotel">IBIS</div>
-									<div class="visit" id="roomType">VIP</div>
-									<div class="visit" id="startDate">20-20-2000</div>	
-									<div class="visit" id="endDate">27-20-2000</div>							
-									<div class="visit" id="fullPrice">2000</div>	
-									<div class="visit" id="cancel">X</div>							
-								</div>
-								<div class="table-row">
-									<div class="serial" id="id">01</div>
-									<div class="visit" id="hotel">IBIS</div>
-									<div class="visit" id="roomType">VIP</div>
-									<div class="visit" id="startDate">20-20-2000</div>	
-									<div class="visit" id="endDate">27-20-2000</div>							
-									<div class="visit" id="fullPrice">2000</div>	
-									<div class="visit" id="cancel">X</div>								
-								</div>
+								<div id="reservations" />
 							</div>
 						</div>
 					</div>
