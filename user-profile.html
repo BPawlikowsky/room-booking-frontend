@@ -46,7 +46,8 @@
 						  <li><a href="login.html">Login</a></li>
 						  <li><a href="user-profile.html">User Profile</a></li>
 						  <li><a href="corporate-user.html">Corporate Profile</a></li>
-				          <li><a href="contact.html">Contact</a></li>
+						  <li><a href="contact.html">Contact</a></li>
+						  <li><a id="user" onclick="logout();" href="index.html">User</div></li>
 
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
@@ -139,7 +140,7 @@
 			<div class="whole-wrap">
 			<div class="container">
 				<div>
-					<h1>Welcome XXXX!</h1>
+					<h1>Welcome <em id="user">XXXX!</em></h1>
 				</div>			
 			<div class="section-top-border">
 			<h3 class="mb-30">My reservations</h3>
@@ -240,5 +241,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="js/owl.carousel.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
 			<script src="js/main.js"></script>	
+			
+			<script src="js/user.js"></script>
 		</body>
 	</html>

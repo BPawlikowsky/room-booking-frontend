@@ -1,178 +1,495 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="colorlib">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Travel</title>
+<!DOCTYPE html>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
+<security:intercept-url pattern="/**" access="permitAll" />
+<security:intercept-url pattern="/js/**" access="permitAll" />
+
+
+
+<html lang="zxx" class="no-js">
+  <head>
+    <!-- Mobile Specific Meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png" />
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib" />
+    <!-- Meta Description -->
+    <meta name="description" content="" />
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="" />
+    <!-- meta character set -->
+    <meta charset="UTF-8" />
+    <!-- Site Title -->
+    <title>Travel</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+      rel="stylesheet"
+    />
+    <!--
 			CSS
 			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/jquery-ui.css">				
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">				
-			<link rel="stylesheet" href="css/main.css">
-		</head>
-		<body>	
-			<header id="header">
-				<div class="header-top">
-				</div>
-				<div class="container main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo">
-				        <a href="index.html"><img src="img/logo2.png" alt="" title="" /></a>
-				      </div>
-				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li><a href="index.html">Home</a></li>
-						  <li><a href="register.html">Register</a></li>
-						  <li><a href="login.html">Login</a></li>
-						  <li><a href="user-profile.html">User Profile</a></li>
-						  <li><a href="corporate-user.html">Corporate Profile</a></li>
-				          <li><a href="contact.html">Contact</a></li>
+    <link rel="stylesheet" href="css/linearicons.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    
+    
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-top"></div>
+      <div class="container main-menu">
+        <div class="row align-items-center justify-content-between d-flex">
+          <div id="logo">
+            <a href="index.html"><img src="img/logo2.png" alt="" title=""/></a>
+          </div>
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="register.html">Register</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="user-profile.html">User Profile</a></li>
+              <li><a href="corporate-user.html">Corporate Profile</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a id="user" onclick="logout();" href="index.html">User</div></li>
+            </ul>
+          </nav>
+          <!-- #nav-menu-container -->
+        </div>
+      </div>
+    </header>
+    
+    
+    <!-- #header -->
+    
+    <script>
+      function postSearchDataToApi() {
+        var startDate = document.getElementById("start").value;
+        var yearStart =
+          startDate[6] + startDate[7] + startDate[8] + startDate[9];
+        var monthStart = startDate[0] + startDate[1];
+        var dayStart = startDate[3] + startDate[4];
 
-				        </ul>
-				      </nav><!-- #nav-menu-container -->					      		  
-					</div>
-				</div>
-			</header><!-- #header -->
-			
-			<!-- start banner Area -->
-			<section class="banner-area relative">
-				<div class="overlay overlay-bg"></div>				
-				<div class="container">
-					<div class="row fullscreen align-items-center justify-content-between">
-						<div class="col-lg-6 col-md-6 banner-left">
-							<h6 class="text-white">Away from monotonous life</h6>
-							<h1 class="text-white">Book My Room</h1>
-							<p class="text-white">
-								If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
-							</p>
-						</div>
-						<div class="col-lg-4 col-md-6 banner-right">
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							  <li class="nav-item">
-							    <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Hotels</a>
-							  </li>
-							</ul>
-							<div class="tab-content" id="myTabContent">
-						
-							  <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="to" placeholder="City " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<input type="number" min="1" max="5" class="form-control" name="hotelstandard" placeholder="Hotel rating " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel rating '">
-									<select class="form-control" name="roomstandard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room standard '">
-										<option value="" disabled selected>Room standard</option>
-										<option>Standard</option>
-										<option>VIP</option>
-									</select>
-									<input type="number" step="10" class="form-control" name="maxprice" placeholder="Max price per night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Max price per night '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Guests " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guests '">
-									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>									
-								</form>							  	
-							  </div>
-						
-							</div>
-						</div>
-					</div>
-				</div>					
-			</section>
-			<!-- End banner Area -->
+        var endDate = document.getElementById("return").value;
+        var yearEnd = endDate[6] + endDate[7] + endDate[8] + endDate[9];
+        var monthEnd = endDate[0] + endDate[1];
+        var dayEnd = endDate[3] + endDate[4];
 
+        var jsonData = {
+          city: $("#to").val(),
+          hotelStandard: $("#hotelstandard").val(),
+          priceMin: $("#minprice").val(),
+          priceMax: $("#maxprice").val(),
+          numberOfBeds: $("#adults").val(),
+          roomStandard: $("#roomstandard").val(),
+          start: yearStart + "-" + monthStart + "-" + dayStart,
+          end: yearEnd + "-" + monthEnd + "-" + dayEnd
+        };
 
-		
-			<!-- start footer Area -->		
-			<footer class="footer-area section-gap">
-				<div class="container">
+        var respUrl;
 
-					<div class="row">
-						<div class="col-lg-3  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>About Agency</h6>
-								<p>
-									The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point 
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Navigation Links</h6>
-								<div class="row">
-									<div class="col">
-										<ul>
-											<li><a href="#">Home</a></li>
-											<li><a href="#">Services</a></li>
-										</ul>
-									</div>
-									<div class="col">
-										<ul>
-											<li><a href="#">Team</a></li>
-											<li><a href="#">Contact</a></li>
-										</ul>
-									</div>										
-								</div>							
-							</div>
-						</div>							
-						<div class="col-lg-3  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Newsletter</h6>
-								<p>
-									For business professionals caught between high OEM price and mediocre print and graphic output.									
-								</p>								
-								<div id="mc_embed_signup">
-									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
-										<div class="input-group d-flex flex-row">
-											<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-											<button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
-										</div>									
-										<div class="mt-10 info"></div>
-									</form>
-								</div>
-							</div>
-						</div>
-									
-					</div>
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:8080/hotels/query",
+          data: jsonData,
+          headers: {
+            "Content-Type": "application/json",
+            Accepct: "application/json"
+          },
+          success: function() {
+            (document.getElementById("success").style.display = "block"),
+              (respUrl = this.url);
 
-					<div class="row footer-bottom d-flex justify-content-between align-items-center">
-						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-					</div>
-				</div>
-			</footer>
-			<!-- End footer Area -->	
+            $.getJSON(respUrl, function(response) {
+              console.log(respUrl);
+              console.log(jsonData);
+              console.log(response);
 
-			<script src="js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
- 			<script src="js/jquery-ui.js"></script>					
-  			<script src="js/easing.min.js"></script>			
-			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
-			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>						
-			<script src="js/jquery.nice-select.min.js"></script>					
-			<script src="js/owl.carousel.min.js"></script>							
-			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
-		</body>
-	</html>
+              for (var i = 0; i < response.length; i++) {
+                var stars = response[i]["hotel"]["standard"];
+                var printStars;
+                if (stars == 1) {
+                  var printStars = "<span class='fa fa-star checked'></span>";
+                  $("#stars").append(printStars);
+                }
+                if (stars == 2) {
+                  var printStars =
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>";
+                  $("#stars").append(printStars);
+                }
+                if (stars == 3) {
+                  var printStars =
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>";
+                  $("#stars").append(printStars);
+                }
+                if (stars == 4) {
+                  var printStars =
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>";
+                  $("#stars").append(printStars);
+                }
+                if (stars == 5) {
+                  var printStars =
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>" +
+                    "<span class='fa fa-star checked'></span>";
+                  $("#stars").append(printStars);
+                }
+                var div =
+                  "<div class='col-lg-4'>" +
+                  "<div class='single-destinations'>" +
+                  "<div class='thumb'>" +
+                  "<img src='img/hotels/d1.jpg' alt=''>" +
+                  "</div>" +
+                  "<div class='details'>" +
+                  "<h4 class='d-flex justify-content-between'>" +
+                  "<span>" +
+                  "nazwa" +
+                  " - " +
+                  response[i]["hotel"]["city"] +
+                  "</span>" +
+                  "<div class='star'>" +
+                  printStars +
+                  "</div></h4>" +
+                  "<ul class='package-list'>" +
+                  "<li class='d-flex justify-content-between align-items-center'>" +
+                  "<span>" +
+                  "Street" +
+                  "</span>" +
+                  "<span>" +
+                  response[i]["hotel"]["street"] +
+                  "</span>" +
+                  "</li>" +
+                  "<li class='d-flex justify-content-between align-items-center'>" +
+                  "<span>" +
+                  "Street number" +
+                  "</span>" +
+                  "<span>" +
+                  response[i]["hotel"]["streetNumber"] +
+                  "</span>" +
+                  "</li>" +
+                  "<li class='d-flex justify-content-between align-items-center'>" +
+                  "<span>" +
+                  "Street" +
+                  "</span>" +
+                  "<span>" +
+                  response[i]["hotel"]["phoneNumber"] +
+                  "</span>" +
+                  "</li>" +
+                  "<li class='d-flex justify-content-between align-items-center'>" +
+                  "<span>" +
+                  "Standard room" +
+                  "</span>" +
+                  "<span>" +
+                  response[i]["hotelRoomTypes"][0]["price"] +
+                  "</span>" +
+                  "</li>" +
+                  "<li class='d-flex justify-content-between align-items-center'>" +
+                  "<span>" +
+                  "VIP room" +
+                  "</span>" +
+                  "<span>" +
+                    response[i]["hotelRoomTypes"][1]["price"] +
+                  "</span>" +
+                  "</li>" +
+                  "</ul>" +
+                  "</div>" +
+                  "</div>";
+
+                $("#query").append(div);
+              }
+            }),
+              $("html,body").animate(
+                { scrollTop: $("#success").offset().top },
+                "slow"
+              ),
+              $("#to").val(""),
+              $("#hotelstandard").val(""),
+              $("#minprice").val(""),
+              $("#adults").val(""),
+              $("#maxprice").val(""),
+              $("#roomstandard").val(""),
+              $("#start").val(""),
+              $("#return").val("");
+          },
+          error: function() {
+            window.alert("Try again!");
+            $("#to").val(""),
+              $("#hotelstandard").val(""),
+              $("#minprice").val(""),
+              $("#adults").val(""),
+              $("#maxprice").val(""),
+              $("#roomstandard").val(""),
+              $("#start").val(""),
+              $("#return").val("");
+          }
+        });
+      }
+      
+    </script>
+
+    <section class="banner-area relative">
+      <div class="overlay overlay-bg"></div>
+      <div class="container">
+        <div class="row fullscreen align-items-center justify-content-between">
+          <div class="col-lg-6 col-md-6 banner-left">
+            <h6 class="text-white">Away from monotonous life</h6>
+            <h1 class="text-white">Book My Room</h1>
+            <p class="text-white">
+              If you are looking at blank cassettes on the web, you may be very
+              confused at the difference in price. You may see some for as low
+              as $.17 each.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 banner-right">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="hotel-tab"
+                  data-toggle="tab"
+                  href="#hotel"
+                  role="tab"
+                  aria-controls="hotel"
+                  aria-selected="false"
+                  >Hotels</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="hotel"
+                role="tabpanel"
+                aria-labelledby="hotel-tab"
+              >
+                <form class="form-wrap">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="to"
+                    placeholder="City "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'City '"
+                  />
+                  <input
+                    type="text"
+                    class="form-control date-picker"
+                    id="start"
+                    placeholder="Start "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Start '"
+                  />
+                  <input
+                    type="text"
+                    class="form-control date-picker"
+                    id="return"
+                    placeholder="Return "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Return '"
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="5"
+                    class="form-control"
+                    id="hotelstandard"
+                    placeholder="Hotel rating "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Hotel rating '"
+                  />
+                  <select
+                    class="form-control"
+                    id="roomstandard"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Room standard '"
+                  >
+                    <option value="" disabled selected>Room standard</option>
+                    <option value="STANDARD">Standard</option>
+                    <option value="VIP">VIP</option>
+                  </select>
+                  <input
+                    type="number"
+                    step="10"
+                    class="form-control"
+                    id="minprice"
+                    placeholder="Min price per night "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Min price per night '"
+                  />
+                  <input
+                    type="number"
+                    step="10"
+                    class="form-control"
+                    id="maxprice"
+                    placeholder="Max price per night "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Max price per night '"
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    class="form-control"
+                    id="adults"
+                    placeholder="Guests "
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Guests '"
+                  />
+                  <input
+                    type="button"
+                    class="primary-btn text-uppercase"
+                    value="Search hotels"
+                    onclick="postSearchDataToApi()"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start destinations Area -->
+    <section
+      id="success"
+      class="destinations-area section-gap"
+      style="display: none"
+    >
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="menu-content pb-40 col-lg-8">
+            <div class="title text-center">
+              <h1 class="mb-10">Hotels for you</h1>
+              <p>Where would you like to stay?</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="query" class="row" />
+      </div>
+    </section>
+    <!-- End destinations Area -->
+
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3  col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>About Agency</h6>
+              <p>
+                The world has become so fast paced that people don’t want to
+                stand by reading a page of information, they would much rather
+                look at a presentation and understand the message. It has come
+                to a point
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>Navigation Links</h6>
+              <div class="row">
+                <div class="col">
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <ul>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3  col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>Newsletter</h6>
+              <p>
+                For business professionals caught between high OEM price and
+                mediocre print and graphic output.
+              </p>
+              <div id="mc_embed_signup">
+                <form
+                  target="_blank"
+                  action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                  method="get"
+                  class="subscription relative"
+                >
+                  <div class="input-group d-flex flex-row">
+                    <input
+                      name="EMAIL"
+                      placeholder="Email Address"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Email Address '"
+                      required=""
+                      type="email"
+                    />
+                    <button class="btn bb-btn">
+                      <span class="lnr lnr-location"></span>
+                    </button>
+                  </div>
+                  <div class="mt-10 info"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="row footer-bottom d-flex justify-content-between align-items-center"
+        >
+          <p class="col-lg-8 col-sm-12 footer-text m-0">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | This template is made with
+            <i class="fa fa-heart-o" aria-hidden="true"></i> by
+            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script src="js/user.js"></script>
+    
+  </body>
+</html>
