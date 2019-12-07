@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<security:intercept-url pattern="/**" access="permitAll" />
+<security:intercept-url pattern="/js/**" access="permitAll" />
+
 <html lang="zxx" class="no-js">
   <head>
     <!-- Mobile Specific Meta -->
@@ -35,6 +39,7 @@
     <link rel="stylesheet" href="css/animate.min.css" />
     <link rel="stylesheet" href="css/owl.carousel.css" />
     <link rel="stylesheet" href="css/main.css" />
+
   </head>
   <body>
     <header id="header">
@@ -52,13 +57,16 @@
               <li><a href="user-profile.html">User Profile</a></li>
               <li><a href="corporate-user.html">Corporate Profile</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li id="userProfile"></li>
+              <li id="corporateProfile"></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li id="user"></li>
             </ul>
           </nav>
           <!-- #nav-menu-container -->
         </div>
       </div>
     </header>
-    <!-- #header -->
 
     <!-- start banner Area -->
 
@@ -167,6 +175,7 @@
         $("#makeReservationRow").append(confirmResDiv);
       }
 
+    <script>
       function postSearchDataToApi() {
         var startDate = document.getElementById("start").value;
         var yearStart =
@@ -208,7 +217,6 @@
               console.log(respUrl);
               console.log(jsonData);
               console.log(response);
-
 
               for (var i = 0; i < response.length; i++) {
                 var stars = response[i]["hotel"]["standard"];
@@ -261,7 +269,6 @@
                 var fullPrice = 222;
 
                 var array;
-
                 var div =
                   "<div class='col-lg-4'>" +
                   "<div class='single-destinations'>" +
@@ -274,6 +281,9 @@
                   name +
                   " - " +
                   city +
+                  "nazwa" +
+                  " - " +
+                  response[i]["hotel"]["city"] +
                   "</span>" +
                   "<div class='star'>" +
                   printStars +
@@ -285,6 +295,7 @@
                   "</span>" +
                   "<span>" +
                   street +
+                  response[i]["hotel"]["street"] +
                   "</span>" +
                   "</li>" +
                   "<li class='d-flex justify-content-between align-items-center'>" +
@@ -293,6 +304,7 @@
                   "</span>" +
                   "<span>" +
                   streetNumber +
+                  response[i]["hotel"]["streetNumber"] +
                   "</span>" +
                   "</li>" +
                   "<li class='d-flex justify-content-between align-items-center'>" +
@@ -301,6 +313,10 @@
                   "</span>" +
                   "<span>" +
                   phone +
+                  "Street" +
+                  "</span>" +
+                  "<span>" +
+                  response[i]["hotel"]["phoneNumber"] +
                   "</span>" +
                   "</li>" +
                   "<li class='d-flex justify-content-between align-items-center'>" +
@@ -318,6 +334,7 @@
                   response[i]["hotel"]["id"] + '\',\'' +
                   response[i]["hotelRoomTypes"][0]["id"] + '\',\'' + 
                   1 + '\')" />' +
+                  response[i]["hotelRoomTypes"][0]["price"] +
                   "</span>" +
                   "</li>" +
                   "<li class='d-flex justify-content-between align-items-center'>" +
@@ -335,11 +352,13 @@
                   response[i]["hotel"]["id"] + '\',\'' +
                   response[i]["hotelRoomTypes"][0]["id"] + '\',\'' + 
                   1 + '\')" />' +
+                    response[i]["hotelRoomTypes"][1]["price"] +
                   "</span>" +
                   "</li>" +
                   "</ul>" +
                   "</div>" +
                   "</div>";
+
                 $("#query").append(div);
               }
             }),
@@ -369,6 +388,7 @@
           }
         });
       }
+
     </script>
 
     <section class="banner-area relative">
@@ -513,6 +533,7 @@
         <div id="query" class="row" />
       </div>
     </section>
+
     <section
       style="display: none"
       id="makeReservation"
@@ -538,8 +559,7 @@
             </div>           
           </div>
         </div>
-      </div>
-      
+      </div>      
     </section>
 
     <!-- End destinations Area -->
@@ -643,6 +663,7 @@
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/mail-script.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>    
+    <script src="js/user.js"></script>
   </body>
 </html>
