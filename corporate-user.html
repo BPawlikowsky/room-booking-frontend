@@ -15,7 +15,7 @@
 		<meta charset="UTF-8">
 		<!-- Site Title -->
 		<title>Travel</title>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
 			CSS
@@ -75,6 +75,7 @@
 			<script>
 				function postHotelDataToApi() {
 							var jsonData = {
+								name: $("#name").val(),
 								city: $("#city").val(),
 								street: $("#street").val(),
 								streetNumber: $("#streetNumber").val(),
@@ -127,6 +128,9 @@
 						<form id="addHotelForm" action="#">
 							<br><br>
 							<h4>Create new hotel</h4>
+							<div class="input-group-icon mt-10">
+								<input type="text" id="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required class="single-input">
+							</div>							
 							<div class="input-group-icon mt-10">
 								<input type="text" id="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'" required class="single-input">
 							</div>
