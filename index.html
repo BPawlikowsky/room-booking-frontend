@@ -3,8 +3,6 @@
 <security:intercept-url pattern="/**" access="permitAll" />
 <security:intercept-url pattern="/js/**" access="permitAll" />
 
-
-
 <html lang="zxx" class="no-js">
   <head>
     <!-- Mobile Specific Meta -->
@@ -41,8 +39,7 @@
     <link rel="stylesheet" href="css/animate.min.css" />
     <link rel="stylesheet" href="css/owl.carousel.css" />
     <link rel="stylesheet" href="css/main.css" />
-    
-    
+
   </head>
   <body>
     <header id="header">
@@ -55,22 +52,128 @@
           <nav id="nav-menu-container">
             <ul class="nav-menu">
               <li><a href="index.html">Home</a></li>
-              <li><a href="register.html">Register</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="user-profile.html">User Profile</a></li>
-              <li><a href="corporate-user.html">Corporate Profile</a></li>
+              <li id="register"></li>
+              <li id="login"></li>
+              <li id="userProfile"></li>
+              <li id="corporateProfile"></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a id="user" onclick="logout();" href="index.html">User</div></li>
+              <li id="user"></li>
             </ul>
           </nav>
           <!-- #nav-menu-container -->
         </div>
       </div>
     </header>
-    
-    
-    <!-- #header -->
-    
+
+    <!-- start banner Area -->
+
+    <script>
+
+      function makeReservation(startDate, endDate, userId, hotelId, roomId) {
+
+        console.log(startDate, endDate, userId, hotelId, roomId)
+
+          var makeReservationJson = {
+								startDate: startDate,
+								endDate: endDate,
+								idUser: userId,
+                idHotel: hotelId,
+                idRoom: roomId
+          }
+          $.ajax({
+								type: "POST",
+								url: "http://localhost:8080/reservation",
+								data: JSON.stringify(makeReservationJson),
+								headers: {
+									"Content-Type": "application/json",
+									"Accepct": "application/json"
+								},
+								success: function() {
+                  window.alert("Added reservation") 
+                },
+                error: function() {
+                  window.aler("ERROR!")
+                }
+							
+							})          
+        }
+
+      function standardClick(hotelName, city, roomStandard, startDate, endDate, hotelId, roomId, userId) {
+        
+      document.getElementById("makeReservation").style.display = "block";
+        $("html,body").animate(
+          { scrollTop: $("#makeReservation").offset().top },
+          "slow"
+        );
+
+
+        var confirmResDiv =
+          "<div class='table-row'>" +
+          "<div class='serial'>" +
+          city +
+          "</div>" +
+          "<div class='visit'>" +
+          hotelName +
+          "</div>" +
+          "<div class='visit'>" +
+          roomStandard +
+          "</div>" +
+          "<div class='visit'>" +
+          startDate +
+          "</div>" +
+          "<div class='visit'>" +
+          endDate +
+          "</div>" +
+          "<div class='visit'>pelna cena</div>" +
+          '<div class="visit"><input type="button" value="Confirm" onclick="makeReservation(\'' +
+            startDate +'\',\'' + 
+            endDate +'\',\'' + 
+            userId +'\',\'' + 
+            hotelId +'\',\'' + 
+            roomId + 
+          '\')" class="genric-btn success" /></div></div>';
+        $("#makeReservationRow").append(confirmResDiv);
+      }
+
+      function vipClick(hotelName, city, roomStandard, startDate, endDate, hotelId, roomId, userId) {
+        
+      document.getElementById("makeReservation").style.display = "block";
+        $("html,body").animate(
+          { scrollTop: $("#makeReservation").offset().top },
+          "slow"
+        );
+
+
+        var confirmResDiv =
+          "<div class='table-row'>" +
+          "<div class='serial'>" +
+          city +
+          "</div>" +
+          "<div class='visit'>" +
+          hotelName +
+          "</div>" +
+          "<div class='visit'>" +
+          roomStandard +
+          "</div>" +
+          "<div class='visit'>" +
+          startDate +
+          "</div>" +
+          "<div class='visit'>" +
+          endDate +
+          "</div>" +
+          "<div class='visit'>pelna cena</div>" +
+          '<div class="visit"><input type="button" value="Confirm" onclick="makeReservation(\'' +
+            startDate +'\',\'' + 
+            endDate +'\',\'' + 
+            userId +'\',\'' + 
+            hotelId +'\',\'' + 
+            roomId + 
+          '\')" class="genric-btn success" /></div></div>';
+        $("#makeReservationRow").append(confirmResDiv);
+      }
+
+      </script>
+
     <script>
       function postSearchDataToApi() {
         var startDate = document.getElementById("start").value;
@@ -151,6 +254,20 @@
                     "<span class='fa fa-star checked'></span>";
                   $("#stars").append(printStars);
                 }
+                var hotelName = response[i]["hotel"]["name"];
+                var city = response[i]["hotel"]["city"];
+                var street = response[i]["hotel"]["street"];
+                var streetNumber = response[i]["hotel"]["streetNumber"];
+                var phone = response[i]["hotel"]["phoneNumber"];
+                var standardPrice = response[i]["hotelRoomTypes"][0]["price"];
+                var vipPrice = response[i]["hotelRoomTypes"][1]["price"];
+                var roomTypeStandard =
+                  response[i]["hotelRoomTypes"][0]["standard"];
+                var roomTypeVip = response[i]["hotelRoomTypes"][1]["standard"];
+
+                var fullPrice = 222;
+
+                var array;
                 var div =
                   "<div class='col-lg-4'>" +
                   "<div class='single-destinations'>" +
@@ -160,6 +277,9 @@
                   "<div class='details'>" +
                   "<h4 class='d-flex justify-content-between'>" +
                   "<span>" +
+                  name +
+                  " - " +
+                  city +
                   "nazwa" +
                   " - " +
                   response[i]["hotel"]["city"] +
@@ -173,6 +293,7 @@
                   "Street" +
                   "</span>" +
                   "<span>" +
+                  street +
                   response[i]["hotel"]["street"] +
                   "</span>" +
                   "</li>" +
@@ -181,11 +302,16 @@
                   "Street number" +
                   "</span>" +
                   "<span>" +
+                  streetNumber +
                   response[i]["hotel"]["streetNumber"] +
                   "</span>" +
                   "</li>" +
                   "<li class='d-flex justify-content-between align-items-center'>" +
                   "<span>" +
+                  "Phone" +
+                  "</span>" +
+                  "<span>" +
+                  phone +
                   "Street" +
                   "</span>" +
                   "<span>" +
@@ -197,6 +323,16 @@
                   "Standard room" +
                   "</span>" +
                   "<span>" +
+                  '<input value="$' +
+                  standardPrice + '"' + 'class="price-btn" type="button" onClick="standardClick(\'' +
+                  hotelName +'\',\''+ 
+                  city + '\',\'' + 
+                  roomTypeStandard + '\',\'' + 
+                  jsonData["start"] + '\',\'' + 
+                  jsonData["end"] + '\',\'' +
+                  response[i]["hotel"]["id"] + '\',\'' +
+                  response[i]["hotelRoomTypes"][0]["id"] + '\',\'' + 
+                  1 + '\')" />' +
                   response[i]["hotelRoomTypes"][0]["price"] +
                   "</span>" +
                   "</li>" +
@@ -205,6 +341,16 @@
                   "VIP room" +
                   "</span>" +
                   "<span>" +
+                  '<input value="$' +
+                  vipPrice + '"' + 'class="price-btn" type="button" onClick="vipClick(\'' +
+                  hotelName +'\',\''+ 
+                  city + '\',\'' + 
+                  roomTypeVip + '\',\'' + 
+                  jsonData["start"] + '\',\'' + 
+                  jsonData["end"] + '\',\'' +
+                  response[i]["hotel"]["id"] + '\',\'' +
+                  response[i]["hotelRoomTypes"][0]["id"] + '\',\'' + 
+                  1 + '\')" />' +
                     response[i]["hotelRoomTypes"][1]["price"] +
                   "</span>" +
                   "</li>" +
@@ -241,7 +387,7 @@
           }
         });
       }
-      
+
     </script>
 
     <section class="banner-area relative">
@@ -386,6 +532,35 @@
         <div id="query" class="row" />
       </div>
     </section>
+
+    <section
+      style="display: none"
+      id="makeReservation"
+      class="contact-page-area section-gap"
+    >
+      <div class="whole-wrap">
+        <div class="container">
+          <div class="section-top-border">
+            <h3 class="mb-30">Confirm Reservation</h3>
+            <div class="progress-table-wrap">
+              <div class="progress-table">
+                <div class="table-head">
+                  <div class="serial">City</div>
+                  <div class="visit">Hotel Name</div>
+                  <div class="visit">Room Type</div>
+                  <div class="visit">Start Date</div>
+                  <div class="visit">End Date</div>
+                  <div class="visit">Full price</div>
+                  <div class="visit">Confirm</div>
+                </div>
+                <div id="makeReservationRow" />
+              </div>
+            </div>           
+          </div>
+        </div>
+      </div>      
+    </section>
+
     <!-- End destinations Area -->
 
     <!-- start footer Area -->
@@ -487,9 +662,7 @@
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/mail-script.js"></script>
-    <script src="js/main.js"></script>
-    
+    <script src="js/main.js"></script>    
     <script src="js/user.js"></script>
-    
   </body>
 </html>

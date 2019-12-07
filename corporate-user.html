@@ -41,15 +41,14 @@
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li><a href="index.html">Home</a></li>
-						  <li><a href="register.html">Register</a></li>
-						  <li><a href="login.html">Login</a></li>
-						  <li><a href="user-profile.html">User Profile</a></li>
-						  <li><a href="corporate-user.html">Corporate Profile</a></li>
-						  <li><a href="contact.html">Contact</a></li>
-						  <li><a id="user" onclick="logout();" href="index.html">User</div></li>
-
-				        </ul>
+							<li><a href="index.html">Home</a></li>
+							<li id="register"></li>
+							<li id="login"></li>
+							<li id="userProfile"></li>
+							<li id="corporateProfile"></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li id="user"></li>
+						  </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 					</div>
 				</div>
@@ -72,6 +71,7 @@
 			<!-- End banner Area -->				  
 
 			<!-- Start corporate-page Area -->
+
 			<script>
 				function postHotelDataToApi() {
 							var jsonData = {
@@ -121,7 +121,7 @@
 			<div class="whole-wrap">
 			<div class="container">
 				<div>
-					<h1>Welcome XXXX!</h1>
+					<h1 id="wellcome">Welcome XXXX!</h1>
 				</div>		
 				
 				<div id="addHotel" class="col-lg-8 col-md-12">
@@ -147,7 +147,7 @@
 									<input type="number" min="1" max="5" id="standard" placeholder="Hotel standard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel standard'" required class="single-input">
 							</div>
 							<div class="input-group-icon mt-10">
-									<input type="number" id="corporationId" placeholder="Your corporation id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your corporation id'" required class="single-input">
+									<span id="corporationId">placeholder</span>
 							</div>
 
 							<div>
@@ -267,6 +267,7 @@
 
 			</script>
 
+
 			<div class="section-top-border">
 			<h3 class="mb-30">Reservations in my hotels</h3>
 						<div class="progress-table-wrap">
@@ -366,8 +367,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="js/jquery.nice-select.min.js"></script>					
 			<script src="js/owl.carousel.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
-			
+			<script src="js/main.js"></script>
+				
 			<script src="js/user.js"></script>
+			
+			<script src="js/corporate-profile.js"></script>
+			
 		</body>
 	</html>
