@@ -18,7 +18,9 @@ $.ajax({
       {
         console.log("TRUE");
         document.getElementById("user").innerHTML = '<a onclick="logout();" href="index.html">' + resp.username + '</a>';
-        document.getElementById("userProfile").innerHTML = 
+        
+        if(resp.userType == "USER")
+          document.getElementById("userProfile").innerHTML = 
                 '<a href="user-profile.html">User Profile</a>';
         if(resp.userType == "CORPO")
            document.getElementById("corporateProfile").innerHTML = '<a href="corporate-user.html">Corporate Profile</a>';
