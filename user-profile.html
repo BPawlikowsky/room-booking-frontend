@@ -105,9 +105,9 @@
 
       $.getJSON(url, function(data) {
         for (var i = 0; i < data.length; i++) {
+          var roomTypeId = data[i]["roomTypeId"]
           var roomType;
-          var roomTypeId;
-          if (roomTypeId == 2) {
+          if (roomTypeId%2 != 0) {
             roomType = "VIP";
           } else {
             roomType = "STANDARD";
@@ -144,7 +144,7 @@
             data[i]["hotelsId"] +
             "</div>" +
             "<div class='visit'>" +
-            roomType +
+           roomType +
             "</div>" +
             "<div class='visit'>" +
             yearStart +
@@ -161,10 +161,10 @@
             dayEnd +
             "</div>" +
             "<div class='visit'>" +
-            roomType +
+            data[i]["fullReservationPrice"] +
             "</div>" +
             "<div class='visit'>" +
-            roomType +
+            data[i]["status"] +
             "</div>" +
             "<div class='visit'><input type='button' value='Delete' onclick='deleteDataFromApi(" +
             id +
@@ -190,8 +190,8 @@
                   <div class="visit">RoomType</div>
                   <div class="visit">Start Date</div>
                   <div class="visit">End Date</div>
-                  <div class="visit">Price by night</div>
                   <div class="visit">Full price</div>
+                  <div class="visit">Status</div>
                   <div class="visit">Cancel</div>
                 </div>
                 <div id="reservations" />
