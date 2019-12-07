@@ -8,7 +8,21 @@ $.ajax({
     },
     success : function(resp) {
       console.log(resp);
-      document.getElementById("user").innerHTML = resp;
+      if(!resp.loggedIn) 
+      {
+        console.log("FALSE")
+        document.getElementById("user").innerHTML = "";
+        document.getElementById("userProfile").innerHTML = "";
+        document.getElementById("corporateProfile").innerHTML = "";
+      } else
+      {
+        console.log("TRUE");
+        document.getElementById("user").innerHTML = '<a onclick="logout();" href="index.html">' + resp.username + '</a>';
+        document.getElementById("userProfile").innerHTML = 
+                '<a href="user-profile.html">User Profile</a>';
+        if(resp.userType == "CORPO")
+           document.getElementById("corporateProfile").innerHTML = '<a href="corporate-user.html">Corporate Profile</a>';
+      }
     }
   });
   
