@@ -26,7 +26,6 @@
     <!--
 			CSS
 			============================================= -->
-
     <link rel="stylesheet" href="css/linearicons.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -80,56 +79,6 @@
       </div>
     </section>
     <!-- End banner Area -->
-=======
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/jquery-ui.css">				
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">				
-			<link rel="stylesheet" href="css/main.css">
-		</head>
-		<body>	
-			<header id="header">
-				<div class="header-top">
-				</div>
-				<div class="container main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo">
-				        <a href="index.html"><img src="img/logo2.png" alt="" title="" /></a>
-				      </div>
-				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="register.html">Register</a></li>
-							<li><a href="login.html">Login</a></li>
-							<li id="userProfile"></li>
-							<li id="corporateProfile"></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li id="user"></li>
-						  </ul>
-				      </nav><!-- #nav-menu-container -->					      		  
-					</div>
-				</div>
-			</header><!-- #header -->
-	  
-			<!-- start banner Area -->
-			<section class="relative about-banner">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								User profile				
-							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="user-profile.html">User profile</a></p>
-						</div>	
-					</div>
-				</div>
-			</section>
-			<!-- End banner Area -->				  
 
     <!-- Start user-profile-page Area -->
     <script>
@@ -141,7 +90,7 @@
           url: "http://localhost:8080/reservation/?reservationId=" + i,
           headers: {
             "Content-Type": "application/json",
-            Accepct: "application/json"
+            Accept: "application/json"
           },
           success: function() {
             window.location.reload(false);
@@ -224,34 +173,7 @@
         }
       });
     </script>
-			<section class="contact-page-area section-gap">
-			<div class="whole-wrap">
-			<div class="container">
-				<div>
-					<h1>Welcome <em id="user">XXXX!</em></h1>
-				</div>			
-			<div class="section-top-border">
-			<h3 class="mb-30">My reservations</h3>
-						<div class="progress-table-wrap">
-							<div class="progress-table">
-								<div class="table-head">
-									<div class="serial">#</div>
-									<div class="visit">Hotel</div>
-									<div class="visit">RoomType</div>
-									<div class="visit">Start Date</div>
-									<div class="visit">End Date</div>
-									<div class="visit">Price by night</div>	
-									<div class="visit">Full price</div>	
-									<div class="visit">Cancel</div>											
-								</div>
-								<div id="reservations" />
-								
-							</div>
-						</div>
-					</div>
-					</div>
-					</div>
-					</section>
+
     <section class="contact-page-area section-gap">
       <div class="whole-wrap">
         <div class="container">
