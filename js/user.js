@@ -29,11 +29,10 @@ function checkLogin(resp) {
   } else {
     console.log("TRUE " + resp.userId.toFixed());
 
-    userID = resp.userId.toFixed();
     userName = resp.username;
     
     if (document.getElementById("wellcome") != null) document.getElementById("wellcome").innerHTML = "Wellcome " + userName + "!";
-    document.getElementById("user").innerHTML = '<a onclick="logout();" href="index.html">' + userName + '</a>';
+    document.getElementById("user").innerHTML = userName + '<a onclick="logout();" href="index.html"> (LOGOUT)</a>';
 
     switch (resp.userType.toString()) {
       case 'USER': {
