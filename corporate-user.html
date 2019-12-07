@@ -42,8 +42,8 @@
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 							<li><a href="index.html">Home</a></li>
-							<li><a href="register.html">Register</a></li>
-							<li><a href="login.html">Login</a></li>
+							<li id="register"></li>
+							<li id="login"></li>
 							<li id="userProfile"></li>
 							<li id="corporateProfile"></li>
 							<li><a href="contact.html">Contact</a></li>
@@ -71,55 +71,13 @@
 			<!-- End banner Area -->				  
 
 			<!-- Start corporate-page Area -->
-			<script>
-				function postHotelDataToApi() {
-							var jsonData = {
-								city: $("#city").val(),
-								street: $("#street").val(),
-								streetNumber: $("#streetNumber").val(),
-								phoneNumber: $("#phoneNumber").val(),
-								standard: $("#standard").val(),
-								corporationId: $("#corporationId").val(),
-								roomsToHotelRequests: [ {
-									price: $("#priceStandard").val(),
-									numOfBeds: $("#numOfBedsStandard").val(),
-									numOfRooms: $("#numOfRoomsStandard").val(),
-									standard: "STANDARD"
-								},
-								{
-									price: $("#priceVIP").val(),
-									numOfBeds: $("#numOfBedsVIP").val(),
-									numOfRooms: $("#numOfRoomsVIP").val(),
-									standard: "VIP"
-								}
-								]								
-							}
-
-							$.ajax({
-								type: "POST",
-								url: "http://localhost:8080/hotels",
-								data: JSON.stringify(jsonData),
-								headers: {
-									"Content-Type": "application/json",
-									"Accepct": "application/json"
-								},
-								success: function(){ 
-									document.getElementById('success').style.display = "block", 
-									document.getElementById('error').style.display = "none" 
-									},
-								error: function() {
-									document.getElementById('error').style.display = "block",
-									document.getElementById('success').style.display = "none"
-									}  
-							})
-						}
-			</script>
+			
 
 			<section class="contact-page-area section-gap">
 			<div class="whole-wrap">
 			<div class="container">
 				<div>
-					<h1>Welcome XXXX!</h1>
+					<h1 id="wellcome">Welcome XXXX!</h1>
 				</div>		
 				
 				<div id="addHotel" class="col-lg-8 col-md-12">
@@ -142,7 +100,7 @@
 									<input type="number" min="1" max="5" id="standard" placeholder="Hotel standard" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hotel standard'" required class="single-input">
 							</div>
 							<div class="input-group-icon mt-10">
-									<input type="number" id="corporationId" placeholder="Your corporation id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your corporation id'" required class="single-input">
+									<span id="corporationId">placeholder</span>
 							</div>
 
 							<div>
@@ -187,64 +145,7 @@
 								Something went wrong. Try again.
 						</blockquote>
 				</div>
-
-			<script>
-				function deleteDataFromApi(i) {
-							$.ajax({
-								type: "DELETE",
-								url: "http://localhost:8080/reservation/?reservationId="+i,
-								headers: {
-									"Content-Type": "application/json",
-									"Accepct": "application/json"
-								},
-								success:  function(){ 
-									window.location.reload(false);
-								},
-								error: function() {
-									window.alert("Can't delete this reservation.")
-								}
-							})
-							}
-
-					var url  = "http://localhost:8080/reservation?corporationId=1";
-					
-					$.getJSON(url, function( data ) {
 			
-						for(var i=0;i < data.length;i++)
-						{
-
-							var roomType;
-							var roomTypeId;
-							if(roomTypeId%2==0) {
-								roomType = "VIP"
-							} else {
-								roomType = "STANDARD"
-							};
-							
-							var id = data[i]["id"]
-
-							var yearStart = data[i]["reservationStart"]["0"] + data[i]["reservationStart"]["1"] + data[i]["reservationStart"]["2"] + data[i]["reservationStart"]["3"]
-							var monthStart = data[i]["reservationStart"]["5"] + data[i]["reservationStart"]["6"]
-							var dayStart = data[i]["reservationStart"]["8"] + data[i]["reservationStart"]["9"]				
-							
-							var yearEnd = data[i]["reservationEnd"]["0"] + data[i]["reservationEnd"]["1"] + data[i]["reservationEnd"]["2"] + data[i]["reservationEnd"]["3"]
-							var monthEnd = data[i]["reservationEnd"]["5"] + data[i]["reservationEnd"]["6"]
-							var dayEnd = data[i]["reservationEnd"]["8"] + data[i]["reservationEnd"]["9"]	
-
-							var tr  ="<div class='table-row'>"+
-									"<div class='serial'>"+id+"</div>"+
-									"<div class='visit'>"+data[i]["hotelsId"]+"</div>"+
-									"<div class='visit'>"+roomType+"</div>"+
-									"<div class='visit'>"+yearStart+"-"+monthStart+"-"+dayStart+"</div>"+
-									"<div class='visit'>"+yearEnd+"-"+monthEnd+"-"+dayEnd+"</div>"+
-									"<div class='visit'>"+roomType+"</div>"+
-									"<div class='visit'>"+roomType+"</div>"+
-									"<div class='visit'><input type='button' value='Delete' onclick='deleteDataFromApi(" + id + ")' class='genric-btn danger' /></div></div>";
-						$("#reservations").append(tr);
-						}
-					});
-
-			</script>
 
 			<div class="section-top-border">
 			<h3 class="mb-30">Reservations in my hotels</h3>
@@ -343,8 +244,125 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="js/jquery.nice-select.min.js"></script>					
 			<script src="js/owl.carousel.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
-			
+			<script src="js/main.js"></script>
+				
 			<script src="js/user.js"></script>
+			
+			<script>
+				logged()
+					.done(function(resp) 
+					{
+						userID = resp.userId;
+						document.getElementById("corporationId").innerHTML = "CorporationID: " + userID;
+					})
+					.fail(function() 
+					{
+						console.log("failed to get new user ID")
+					});
+
+				function postHotelDataToApi() {
+					var jsonData = {
+						city: $("#city").val(),
+						street: $("#street").val(),
+						streetNumber: $("#streetNumber").val(),
+						phoneNumber: $("#phoneNumber").val(),
+						standard: $("#standard").val(),
+						corporationId: userID,
+						roomsToHotelRequests: [{
+								price: $("#priceStandard").val(),
+								numOfBeds: $("#numOfBedsStandard").val(),
+								numOfRooms: $("#numOfRoomsStandard").val(),
+								standard: "STANDARD"
+							},
+							{
+								price: $("#priceVIP").val(),
+								numOfBeds: $("#numOfBedsVIP").val(),
+								numOfRooms: $("#numOfRoomsVIP").val(),
+								standard: "VIP"
+							}
+						]
+					}
+
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8080/hotels",
+						data: JSON.stringify(jsonData),
+						headers: {
+							"Content-Type": "application/json",
+							"Accepct": "application/json"
+						},
+						success: function () {
+							document.getElementById('success').style.display = "block",
+								document.getElementById('error').style.display = "none"
+						},
+						error: function () {
+							document.getElementById('error').style.display = "block",
+								document.getElementById('success').style.display = "none"
+						}
+					});
+				}
+			</script>
+			
+			<script>
+				function deleteDataFromApi(i) {
+					$.ajax({
+						type: "DELETE",
+						url: "http://localhost:8080/reservation/?reservationId=" + i,
+						headers: {
+							"Content-Type": "application/json",
+							"Accepct": "application/json"
+						},
+						success: function () {
+							window.location.reload(false);
+						},
+						error: function () {
+							window.alert("Can't delete this reservation.")
+						}
+					})
+				}
+
+				var url = "http://localhost:8080/reservation?corporationId=1";
+
+				$.getJSON(url, function (data) {
+
+					for (var i = 0; i < data.length; i++) {
+
+						var roomType;
+						var roomTypeId;
+						if (roomTypeId % 2 == 0) {
+							roomType = "VIP"
+						} else {
+							roomType = "STANDARD"
+						};
+
+						var id = userID;
+
+						var yearStart = data[i]["reservationStart"]["0"] + data[i]["reservationStart"]["1"] + data[i][
+							"reservationStart"
+						]["2"] + data[i]["reservationStart"]["3"]
+						var monthStart = data[i]["reservationStart"]["5"] + data[i]["reservationStart"]["6"]
+						var dayStart = data[i]["reservationStart"]["8"] + data[i]["reservationStart"]["9"]
+
+						var yearEnd = data[i]["reservationEnd"]["0"] + data[i]["reservationEnd"]["1"] + data[i][
+							"reservationEnd"
+						]["2"] + data[i]["reservationEnd"]["3"]
+						var monthEnd = data[i]["reservationEnd"]["5"] + data[i]["reservationEnd"]["6"]
+						var dayEnd = data[i]["reservationEnd"]["8"] + data[i]["reservationEnd"]["9"]
+
+						var tr = "<div class='table-row'>" +
+							"<div class='serial'>" + id + "</div>" +
+							"<div class='visit'>" + data[i]["hotelsId"] + "</div>" +
+							"<div class='visit'>" + roomType + "</div>" +
+							"<div class='visit'>" + yearStart + "-" + monthStart + "-" + dayStart + "</div>" +
+							"<div class='visit'>" + yearEnd + "-" + monthEnd + "-" + dayEnd + "</div>" +
+							"<div class='visit'>" + roomType + "</div>" +
+							"<div class='visit'>" + roomType + "</div>" +
+							"<div class='visit'><input type='button' value='Delete' onclick='deleteDataFromApi(" + id +
+							")' class='genric-btn danger' /></div></div>";
+						$("#reservations").append(tr);
+					}
+				});
+			</script>
+			
 		</body>
 	</html>
