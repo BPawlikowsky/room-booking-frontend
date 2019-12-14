@@ -142,10 +142,16 @@
 												"Accepct": "application/json"
 											},
 											success:  function(){ 
-												document.getElementById('success').style.display = "block", 
-												document.getElementById('error').style.display = "none" ,
-												$('#indEmail').val(''),
-												$('#indPass').val('')
+												
+													document.getElementById('success').style.display = "block", 
+													document.getElementById('error').style.display = "none" ,
+													$('#indEmail').val(''),
+													$('#indPass').val(''),
+												setTimeout(
+ 													function() 
+													{
+														window.location = './index.html'
+													}, 1500);									
 												},
 											error: function() {
 												document.getElementById('error').style.display = "block",
@@ -197,9 +203,14 @@
 									document.getElementById('success').style.display = "block", 
 									document.getElementById('error').style.display = "none" ,
 									$('#busEmail').val(''),
-									$('#busPass').val('')
-									},
-								error: function() {
+									$('#busPass').val(''),
+									setTimeout(
+ 										function() 
+											{
+												window.location = './index.html'
+											}, 1500);									
+										},
+ 									error: function() {
 									document.getElementById('error').style.display = "block",
 									document.getElementById('success').style.display = "none",
 									$('#busEmail').val(''),
