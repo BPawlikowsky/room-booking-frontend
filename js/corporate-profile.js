@@ -76,20 +76,20 @@ function postHotelDataToApi() {
 	})
 }
 
-var url = "http://localhost:8080/reservation/corporation?corporationId=1";
+var url = "http://localhost:8080/reservation/corporation?corporationId=7";
 console.log("dupa")
 $.getJSON(url, function (data) {
 	console.log(data)
 	for (var i = 0; i < data.length; i++) {
 
 		var roomType;
-		var roomTypeId;
+		var roomTypeId = data[i]["roomTypeId"];
 		var fullReservationPrice = data[i]["fullReservationPrice"];
 		var status = data[i]["status"];
-		if (roomTypeId % 2 == 0) {
-			roomType = "VIP"
-		} else {
+		if (roomTypeId % 2 != 0) {
 			roomType = "STANDARD"
+		} else {
+			roomType = "VIP"
 		};
 
 		var id = data[i]["id"]
@@ -110,7 +110,6 @@ $.getJSON(url, function (data) {
 			"<div class='visit'>" + roomType + "</div>" +
 			"<div class='visit'>" + yearStart + "-" + monthStart + "-" + dayStart + "</div>" +
 			"<div class='visit'>" + yearEnd + "-" + monthEnd + "-" + dayEnd + "</div>" +
-			"<div class='visit'>" + roomType + "</div>" +
 			"<div class='visit'>" + fullReservationPrice + "</div>" +
 			"<div class='visit'>" + status + "</div>" +
 			'<div class="visit"><input type="button" value="Accept" onclick="patchDataInApi(\'' + id + '\',\'' + accept + '\')" class="genric-btn success" /></div>' +

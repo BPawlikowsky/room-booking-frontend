@@ -18,11 +18,10 @@ function deleteDataFromApi(i) {
 	});
 }
 
-var x = logged().responseJSON.userId;
-console.log(x);
 
 
-var url = "http://localhost:8080/reservation?userId=" + userIdUrl;
+
+var url = "http://localhost:8080/reservation?userId=1";
 
 $.getJSON(url, function (data) {
 	for (var i = 0; i < data.length; i++) {
