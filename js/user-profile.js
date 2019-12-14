@@ -1,5 +1,6 @@
 var i;
 
+
 function deleteDataFromApi(i) {
 	$.ajax({
 		type: "DELETE",
@@ -17,16 +18,20 @@ function deleteDataFromApi(i) {
 	});
 }
 
-var url = "http://localhost:8080/reservation?userId=1";
+var x = logged().responseJSON.userId;
+console.log(x);
+
+
+var url = "http://localhost:8080/reservation?userId=" + userIdUrl;
 
 $.getJSON(url, function (data) {
 	for (var i = 0; i < data.length; i++) {
 		var roomTypeId = data[i]["roomTypeId"]
 		var roomType;
 		if (roomTypeId % 2 != 0) {
-			roomType = "VIP";
-		} else {
 			roomType = "STANDARD";
+		} else {
+			roomType = "VIP";
 		}
 
 		var id = data[i]["id"];

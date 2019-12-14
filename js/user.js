@@ -51,10 +51,13 @@ function checkLogin(resp) {
         break;
     }
   }
-  userID = resp.userId;
+  returnuserID = resp.userId;
   console.log("user ID in response: " + resp.userId);
   userName = resp.username;
+  return userID;
 }
+
+
 
 logged().done(checkLogin).fail(function () { console.log("FAIL...");});
   
