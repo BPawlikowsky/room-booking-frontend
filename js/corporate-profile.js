@@ -28,8 +28,7 @@ function patchDataInApi(i, s) {
 			window.location.reload(false);
 		})
 		.fail(function (data, status) {
-			console.log("fail")
-			window.alert("Can't delete this reservation.")
+			window.location.reload(false);
 		})
 }
 
