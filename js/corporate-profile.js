@@ -106,7 +106,7 @@ $.getJSON(url, function (data) {
 		var reject = 2;
 		var tr = "<div class='table-row'>" +
 			"<div class='serial'>" + id + "</div>" +
-			"<div class='visit'>" + data[i]["id"] + "</div>" +
+			"<div class='visit'>" + data[i]["hotelsId"] + "</div>" +
 			"<div class='visit'>" + roomType + "</div>" +
 			"<div class='visit'>" + yearStart + "-" + monthStart + "-" + dayStart + "</div>" +
 			"<div class='visit'>" + yearEnd + "-" + monthEnd + "-" + dayEnd + "</div>" +
